@@ -29,26 +29,32 @@
         // get all canvas pixel data
         imageData = c.getImageData(0, 0, width, height);
 
-        var colorString = "";
+        var head = "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150'>";
+        var body = "";
+
+        var unit = 2;
 
         for (y = 0; y < height; y++ ){
             for (x = 0; x < width; x++ ) {
                 //setPixel(imageData, x, y, 255, 0, 0, 255); // 255 opaque
-                var color = getPixel(imageData, x, y) + "\r\n";
+                var color = getPixel(imageData, x, y);
 
-                if (color[0] == 0) {
-                    colorString+= "0";
-                } else{
-                    colorString+= "1";
+                var redux = color.reduce(function(a,b){
+                    return a+b;
+                });
+
+                if (redux > 0){
+                    var strColor = color[0]+","+color[1]+","+color[2];
+                    console.log(strColor);
+                    body += "<rect x='"+String(x*unit)+"' y='"+String(y*unit)+"' width='"+String(unit)+"' height= '"+String(unit)+"' style='fill:rgb("+strColor+")'/>\r\n";
+
                 }
-
             }
-            colorString += "\r\n";
-
         }
 
-        var textArea = document.getElementById("generatedSVG");
-        textArea.innerHTML = colorString;
+        var tail = "</svg>";
+
+        drawSVGString(head+"\r\n"+body+"\r\n"+tail);
 
         // put pixel data on canvas
         c.putImageData(imageData, 0, 0);

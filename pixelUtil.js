@@ -14,14 +14,12 @@ function setPixel(imageData, x, y, r, g, b, a) {
 }
 
 function getPixel(imageData, x, y) {
-    var colors = [];
+    var colors = {};
 
     index = (x + y * imageData.width) * 4;
-    colors.push(imageData.data[index+0]);
-    colors.push(imageData.data[index+1]);
-    colors.push(imageData.data[index+2]);
-    colors.push(imageData.data[index+3]);
-    return colors;
+
+    return[imageData.data[index+0], imageData.data[index+1], imageData.data[index+2], imageData.data[index+3]];
+
 }
 
 function draw() {
