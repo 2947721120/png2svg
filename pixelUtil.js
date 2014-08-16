@@ -1,10 +1,8 @@
 /**
  * Created by ehtd on 8/15/14.
  */
-    //https://github.com/kbwood/svg/issues/7
 
-    //http://beej.us/blog/data/html5s-canvas-2-pixel/
-
+//http://beej.us/blog/data/html5s-canvas-2-pixel/
 function setPixel(imageData, x, y, r, g, b, a) {
     index = (x + y * imageData.width) * 4;
     imageData.data[index+0] = r;

@@ -14,7 +14,10 @@
 
 <script>
 
+    var svgSource = "";
+
     function imageLoaded(ev) {
+
         canvas = document.getElementById("myCanvas");
         c = canvas.getContext("2d");
 
@@ -30,7 +33,7 @@
 
         imageData = c.getImageData(0, 0, width, height);
 
-        var unit = 10;
+        var unit = 1;
 
         var head = "<svg xmlns='http://www.w3.org/2000/svg' width='"+width*unit+"' height='"+height*unit+"'>";
         var body = "";
@@ -73,5 +76,8 @@
 
 </div>
 
+<Button onclick="downloadSVG();">Download SVG</Button>
+
 </body>
 </html>
+
